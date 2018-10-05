@@ -1,0 +1,19 @@
+html {
+  font-size: 120%;
+}
+
+body {
+  font-family: 'baskerville', serif;
+}
+
+a {
+  cursor: pointer;
+  color: #888;
+  box-shadow: inset 0 -4px 0  #ddd;
+}
+
+.container {
+  margin: auto;
+  margin-top: 2rem;
+  max-width: 30rem;
+}

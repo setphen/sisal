@@ -3,17 +3,41 @@ html {
 }
 
 body {
-  font-family: 'baskerville', serif;
+  font-family: sans-serif;
+  background-color: #000;
+  color: #FFF;
+  cursor: default;
 }
 
 a {
-  cursor: pointer;
-  color: #888;
-  box-shadow: inset 0 -4px 0  #ddd;
+  border-bottom: 1px solid;
+  padding-bottom: 2px;
+  cursor: crosshair;
+  display: inline-block;
+  transition: padding 0.06s, transform 0.06s;
+}
+
+a:hover {
+  transform: translateY(-4px);
+  padding-bottom: 6px;
+}
+
+a:active {
+  padding-bottom: 6px;
+  transform: translateY(-4px);
 }
 
 .container {
   margin: auto;
   margin-top: 2rem;
   max-width: 30rem;
+}
+
+.fic {
+  transition: opacity 0.3s
+}
+
+.fic-exit {
+  pointer-events: none;
+  opacity: 0;
 }

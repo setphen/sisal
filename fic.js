@@ -68,12 +68,16 @@ var Fic = function(params) {
   }
 
   this.render = function(html) {
-    this.element.innerHTML = html
-    this.element.querySelectorAll("[data-link]").forEach((node) => {
-      node.addEventListener('click', () => {
-        this.jump(node.dataset.link)
-      });
-    });
+    this.element.classList.add("fic-exit")
+    window.setTimeout(() => {
+      this.element.innerHTML = html
+      this.element.querySelectorAll("[data-link]").forEach((node) => {
+        node.addEventListener('click', () => {
+          this.jump(node.dataset.link)
+        })
+      })
+      this.element.classList.remove("fic-exit")
+    }, 300)
   }
 }
 

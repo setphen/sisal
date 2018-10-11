@@ -1,6 +1,8 @@
 var Fic = function(params) {
   this.element = document.getElementById(params.element)
 
+  this.element.classList.add("fic-content")
+
   this.parseNode = function(s) {
     var node = document.createElement('div');
     var tokens = s.match(/[^{}]+(?=\})/g)
@@ -68,7 +70,7 @@ var Fic = function(params) {
   }
 
   this.render = function(html) {
-    this.element.classList.add("fic-exit")
+    this.element.classList.add("fic-content-exit")
     window.setTimeout(() => {
       this.element.innerHTML = html
       this.element.querySelectorAll("[data-link]").forEach((node) => {
@@ -76,20 +78,7 @@ var Fic = function(params) {
           this.jump(node.dataset.link)
         })
       })
-      this.element.classList.remove("fic-exit")
+      this.element.classList.remove("fic-content-exit")
     }, 300)
   }
 }
-
-var rawinput = `
-::mountain
-
-You are looking out over the { green plains | plains }.
-
-::plains
-
-In front of you the { rugged mountain | mountain } ascends to the sky.
-`
-
-fiction = new Fic({element: "Fic", raw_story: rawinput})
-fiction.jump('mountain')

@@ -1,0 +1,8 @@
+.fic-content {
+  transition: opacity 0.3s
+}
+
+.fic-content-exit {
+  pointer-events: none;
+  opacity: 0;
+}

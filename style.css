@@ -32,12 +32,3 @@ a:active {
   margin-top: 2rem;
   max-width: 30rem;
 }
-
-.fic {
-  transition: opacity 0.3s
-}
-
-.fic-exit {
-  pointer-events: none;
-  opacity: 0;
-}

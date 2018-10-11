@@ -3,12 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>interactive fiction demo</title>
+
   <link rel="stylesheet" href="style.css"></link>
+  <link rel="stylesheet" href="fic.css"></link>
+  <script src="fic.js"></script>
+  <script src="mystory.js"></script>
 </head>
 <body>
   <div class="container">
-    <div id="Fic" class="fic"></div>
+    <div id="Fic"></div>
   </div>
-  <script src="fic.js"></script>
+  <script>
+    fiction = new Fic({
+      element: 'Fic',
+      raw_story: my_story,
+    })
+
+    fiction.jump('mountain')
+  </script>
 </body>
 </html>

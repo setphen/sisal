@@ -64,12 +64,8 @@ var Fic = function(params) {
     return story
   }
 
-
   this.jump = function(node) {
-    this.render(this.story[node])
-  }
-
-  this.render = function(html) {
+    html = this.story[node]
     this.element.classList.add("fic-content-exit")
     window.setTimeout(() => {
       this.element.innerHTML = html

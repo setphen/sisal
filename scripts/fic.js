@@ -15,7 +15,7 @@ var Fic = function(params) {
 
     if (tokens){
       tokens.forEach(function(token, index){
-        // check if token is a split link, i.e. {{ text | key }}
+        // check if token is a link (ie. broken by {text|key})
         if (/\|/g.test(token)) {
           var split = token.split("|")
           var text = split[0].trim()
@@ -79,6 +79,6 @@ var Fic = function(params) {
         })
       })
       this.element.classList.remove("fic-content-exit")
-    }, 300)
+    }, 400)
   }
 }

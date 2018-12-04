@@ -6,6 +6,7 @@
 
   <link rel="stylesheet" href="styles/style.css"></link>
   <link rel="stylesheet" href="styles/fic.css"></link>
+  <script src="scripts/fuse.min.js"></script>
   <script src="scripts/fic.js"></script>
   <script src="stories/mystory.js"></script>
 </head>
@@ -19,7 +20,28 @@
       raw_story: my_story,
     })
 
-    fiction.jump('mountain')
+    var list = Object.keys(fiction.story).map(x => {return { location: x, text: fiction.story[x]}})
+
+    var options = {
+      shouldSort: false,
+      threshold: 0.6,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: [{
+          name: 'location',
+          weight: 0.9
+        }, {
+          name: 'text',
+          weight: 0.1
+        }]
+      };
+
+    var fuse = new Fuse(list, options);
+    var result = fuse.search("rug");
+
+    fiction.jump(result[0].location)
   </script>
 </body>
 </html>

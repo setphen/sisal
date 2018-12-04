@@ -3,15 +3,16 @@ var Fic = function(params) {
 
   this.element.classList.add("fic-content")
 
+  this.tokenize = function(token) {
+    return token.toLowerCase().replace(/ /g, '_')
+  }
+
   this.parseNode = function(s) {
+
     var node = document.createElement('div');
     var tokens = s.match(/[^{}]+(?=\})/g)
 
     output = s
-
-    this.tokenize = function(token) {
-      return token.toLowerCase().replace(/ /g, '_')
-    }
 
     if (tokens){
       tokens.forEach(function(token, index){
@@ -41,7 +42,7 @@ var Fic = function(params) {
 
     nodes.forEach(function(node, index){
       var split = node.trim().split(/\n/)
-      var node = this.parseNode(split.slice(1).join(' '))
+      var node = split.slice(1).join(' ')
       story[this.tokenize(split[0])] = node
     }.bind(this))
 
@@ -65,7 +66,7 @@ var Fic = function(params) {
   }
 
   this.jump = function(node) {
-    html = this.story[node]
+    html = this.parseNode(this.story[node])
     this.element.classList.add("fic-content-exit")
     window.setTimeout(() => {
       this.element.innerHTML = html

@@ -1,8 +1,62 @@
+* {
+  box-sizing: border-box;
+}
+
 .fic-content {
+  margin-bottom: 4rem;
   transition: opacity 0.3s
 }
 
 .fic-content-exit {
   pointer-events: none;
   opacity: 0;
+}
+
+#search {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  background-color: transparent;
+  border-radius: 2rem;
+  border: 1px solid gray;
+  color: gray;
+  padding: 0.4rem 1rem;
+}
+
+input:focus {
+  outline: none;
+  color: inherit;
+  border-color: white;
+}
+
+#searchBar ol{
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+#searchBar:hover ol{
+  opacity: 1;
+}
+
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ol li {
+  width: 100%;
+}
+
+li a{
+  display: block;
+  padding: 0.4rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.2rem;
+  border: 1px solid currentColor;
+  text-decoration: none;
 }

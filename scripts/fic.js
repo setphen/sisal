@@ -26,7 +26,7 @@ var Fic = function(params) {
           var text = key
         }
 
-        var link = `<a data-link="${this.tokenize(key)}">${text}</a>`
+        var link = `<a href="#${this.tokenize(key)}">${text}</a>`
         var e = `{${token}}`
         output = output.replace(e, link)
       }.bind(this))
@@ -51,31 +51,17 @@ var Fic = function(params) {
 
   this.story = this.parseStory(params.raw_story)
 
-  this.parseStory = function(rawinput) {
-    var re = /(?=.)[^::]+/g
-    var nodes = rawinput.match(re)
-    var story = {}
-
-    nodes.forEach(function(node, index){
-      var split = node.trim().split(/\n/)
-      var node = this.parseNode(split.slice(1).join(' '))
-      story[this.tokenize(split[0])] = node
-    })
-
-    return story
-  }
-
   this.jump = function(node) {
     html = this.parseNode(this.story[node])
     this.element.classList.add("fic-content-exit")
     window.setTimeout(() => {
       this.element.innerHTML = html
-      this.element.querySelectorAll("[data-link]").forEach((node) => {
-        node.addEventListener('click', () => {
-          this.jump(node.dataset.link)
-        })
-      })
       this.element.classList.remove("fic-content-exit")
     }, 400)
   }
+
+  window.onhashchange = (function() {
+    let location = window.location.hash.slice(1)
+    this.jump(location)
+  }).bind(this)
 }

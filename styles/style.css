@@ -9,22 +9,17 @@ body {
   cursor: default;
 }
 
-a {
+a, a:visited {
+  text-decoration: none;
+  color: gray;
   border-bottom: 1px solid;
   padding-bottom: 2px;
   cursor: crosshair;
   display: inline-block;
-  transition: padding 0.06s, transform 0.06s;
 }
 
 a:hover {
-  transform: translateY(-4px);
-  padding-bottom: 6px;
-}
-
-a:active {
-  padding-bottom: 6px;
-  transform: translateY(-4px);
+  color: white;
 }
 
 .container {

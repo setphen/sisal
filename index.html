@@ -6,6 +6,7 @@
 
   <link rel="stylesheet" href="styles/style.css"></link>
   <link rel="stylesheet" href="styles/fic.css"></link>
+  <script src="scripts/S.js"></script>
   <script src="scripts/fuse.min.js"></script>
   <script src="scripts/fic.js"></script>
   <script src="stories/mystory.js"></script>
@@ -13,6 +14,11 @@
 <body>
   <div class="container">
     <div id="Fic"></div>
+    <div id="searchBar">
+      <input id="search"></input>
+      <ol id="results">
+      </ol>
+    </div>
   </div>
   <script>
     fiction = new Fic({
@@ -23,7 +29,7 @@
     var list = Object.keys(fiction.story).map(x => {return { location: x, text: fiction.story[x]}})
 
     var options = {
-      shouldSort: false,
+      shouldSort: true,
       threshold: 0.6,
       location: 0,
       distance: 100,
@@ -38,10 +44,36 @@
         }]
       };
 
-    var fuse = new Fuse(list, options);
-    var result = fuse.search("rug");
+    fiction.jump("mountain")
 
-    fiction.jump(result[0].location)
+    var fuse = new Fuse(list, options);
+
+    let results = S.data([]);
+    results(fuse.search('rug'));
+
+    var search = document.getElementById('search');
+    search.oninput = function(v) {
+      results(fuse.search(v.target.value));
+    }
+
+    results_container = document.getElementById('results');
+
+    S(() => {
+      console.log(results())
+      results_container.innerHTML = results().reduce((c, x) => {
+        return c + `
+        <li>
+          <a href="#${x.location}">
+            <p>
+              ${x.location}
+            </p>
+            <p>
+              ${x.text}
+            </p>
+          </a>
+        </li>`
+      }, ``)
+    })
   </script>
 </body>
 </html>

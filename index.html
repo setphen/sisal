@@ -44,7 +44,7 @@
         }]
       };
 
-    fiction.jump("mountain")
+    fiction.jump(window.location.hash.slice(1) || "mountain")
 
     var fuse = new Fuse(list, options);
 

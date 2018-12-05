@@ -52,6 +52,7 @@ var Fic = function(params) {
   this.story = this.parseStory(params.raw_story)
 
   this.jump = function(node) {
+    window.location.hash = node;
     html = this.parseNode(this.story[node])
     this.element.classList.add("fic-content-exit")
     window.setTimeout(() => {
